@@ -346,18 +346,18 @@ Aqui está uma solução recursiva:
 
 ```js
 function findSolution(target) {
-  function find(start, history) {
-    if (start == target)
+  function find(current, history) {
+    if (current == target) {
       return history;
-    else if (start > target)
+    } else if (current > target) {
       return null;
-    else
-      return find(start + 5, “(“ + history + “ + 5)”) ||
-             find(start * 3, “(“ + history + “ * 3)”);
+    } else {
+      return find(current + 5, `(${history} + 5)`) ||
+             find(current * 3, `(${history} * 3)`);
+    }
   }
-  return find(1, “1”);
+  return find(1, "1");
 }
-
 console.log(findSolution(24));
 // → (((1 * 3) + 5) * 3)
 ```
